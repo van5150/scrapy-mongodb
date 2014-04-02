@@ -236,29 +236,33 @@ class MongoDBPipeline():
                         print '----title----'
                         is_dup = False
                     
-                    if item['domain'] != db_items['domain']:
-                        print '---domain---'
-                        is_dup = False
+                    # if item['domain'] != db_items['domain']:
+                    #     print '---domain---'
+                    #     is_dup = False
 
                     if item['desc'] != db_items['desc']:
                         print '---desc----'
                         is_dup = False
 
-                    if item['currency'] != db_items['currency']:
-                        print '---currency---'
-                        is_dup = False
+                    # if item['currency'] != db_items['currency']:
+                    #     print '---currency---'
+                    #     is_dup = False
 
                     if item['price'] != db_items['price']:
                         print '---price---'
+                        is_dup = False
+
+                    if item['inventory'] != db_items['inventory']:
+                        print '---inventory---'
                         is_dup = False
 
                     if item['options'] != db_items['options']:
                         print '---options---'
                         is_dup = False
 
-                    if item['images'] != db_items['images']:
-                        print '---images---'
-                        is_dup = False
+                    # if item['images'] != db_items['images']:
+                    #     print '---images---'
+                    #     is_dup = False
 
 
                     if not is_dup:
