@@ -209,78 +209,10 @@ class MongoDBPipeline():
 
         if self.config['unique_key'] is None:
             try:
-                print "========================="
-                # db_items = self.collection.find_one({'url': str(item['url'])})
-                db_items_temp = self.collection.find({'url': str(item['url'])}).sort('created_at', -1)
-
-                print ":::::::::::::::::"
-                print db_items_temp.count()
-                print "::::::::::::::::" 
-                if db_items_temp.count() > 0:
-                    db_items = db_items_temp.next() 
-                else:
-                    db_items = ""
-
-                is_dup = True
-
-                if db_items:
-                    print item
-                    print '--------------------'
-                    print db_items
-                    print ">>>>>>>>>>>>>>>"
-
-                    print item['title']
-
-
-                    if item['title'] != db_items['title']:
-                        print '----title----'
-                        is_dup = False
-                    
-                    # if item['domain'] != db_items['domain']:
-                    #     print '---domain---'
-                    #     is_dup = False
-
-                    if item['desc'] != db_items['desc']:
-                        print '---desc----'
-                        is_dup = False
-
-                    # if item['currency'] != db_items['currency']:
-                    #     print '---currency---'
-                    #     is_dup = False
-
-                    if item['price'] != db_items['price']:
-                        print '---price---'
-                        is_dup = False
-
-                    if item['inventory'] != db_items['inventory']:
-                        print '---inventory---'
-                        is_dup = False
-
-                    if item['options'] != db_items['options']:
-                        print '---options---'
-                        is_dup = False
-
-                    # if item['images'] != db_items['images']:
-                    #     print '---images---'
-                    #     is_dup = False
-
-
-                    if not is_dup:
-                        item['status'] = "update"
-                        self.collection.insert(item, continue_on_error=True)
-
-                    print db_items['options']
-
-                    print "++++++"
-                    print is_dup
-
-                   
-                else:
-                    item['status'] = "create"
-                    self.collection.insert(item, continue_on_error=True)
+                
+                self.collection.insert(item, continue_on_error=True)
                 # print dumps(c)
 
-                print "========================="
                 
             except errors.DuplicateKeyError:
                 pass
